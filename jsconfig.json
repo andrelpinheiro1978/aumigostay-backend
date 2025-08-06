@@ -1,0 +1,13 @@
+{
+  "typeAcquisition": {
+    "include": ["jest"]
+  },
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "checkJs": true,
+    "jsx": "react",
+    "baseUrl": "./"
+  },
+  "include": ["src", "tests", "**/*.js"]
+}

@@ -1,31 +1,33 @@
-// Importa o framework Express
+// 📦 Importa o framework Express
 const express = require('express');
 
-// Importa o CORS
+// 🔐 Importa o CORS para permitir comunicação entre front e back
 const cors = require('cors');
 
-// Cria a instância principal da aplicação
+// 🚀 Cria a instância principal da aplicação
 const app = express();
 
-// Middleware para interpretar requisições com corpo em JSON
+// 🧠 Middleware que permite ler JSON no corpo da requisição
 app.use(express.json());
 
-// ⚠️ Ajuste do CORS: permite acesso do frontend na porta 3001
+// 🌍 Configuração do CORS (deixe como está, está perfeito)
 app.use(cors({
-  origin: 'http://localhost:3001',
-  credentials: true // Permite cookies e autenticações (futuramente)
+  origin: 'http://localhost:3001', // Libera acesso do seu front
+  credentials: true                // Permite cookies (se quiser usar login com sessão)
 }));
 
-// Importa as rotas de autenticação (login e cadastro)
+// 🔐 Rotas de autenticação (login, cadastro)
 const authRoutes = require('./routes/auth.routes');
+app.use('/auth', authRoutes); // Ex: POST /auth/login
 
-// Define o prefixo "/auth" para as rotas de autenticação
-app.use('/auth', authRoutes);
+// 👤 Rotas de usuário (CRUD completo)
+const userRoutes = require('./routes/user.routes');
+app.use('/users', userRoutes); // Ex: GET /users
 
-// Rota raiz apenas para teste rápido da API
+// ✅ Rota raiz para teste rápido no navegador
 app.get('/', (req, res) => {
-  res.send('API do AumigoStay está no ar 🐶');
+  res.send('API do AumigoStay está no ar 🔥');
 });
 
-// Exporta a aplicação configurada para ser usada no server.js
+// 📦 Exporta a aplicação para ser usada no server.js
 module.exports = app;

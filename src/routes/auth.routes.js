@@ -20,6 +20,7 @@ router.post('/login', authController.login);
 
 // Rota protegida de teste
 router.get('/protected', authenticateToken, (req, res) => {
+  // @ts-ignore
   res.json({ message: `Bem-vindo, ${req.user.name}! Essa é uma rota protegida.` });
 });
 
